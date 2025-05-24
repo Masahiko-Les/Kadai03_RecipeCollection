@@ -1,0 +1,25 @@
+#item_box_field{
+    width: 1200px;
+    background-color: orange;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.item_box{
+    background-color: red;
+    width: 20%;
+    margin: 10px;
+}
+.item_image{
+    background-color: #ddd;
+    width: 200px;
+
+    margin: 10px auto;
+}
+.item_image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
