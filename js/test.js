@@ -1,4 +1,3 @@
-
 //リュウジの至高のレシピ100(1)
 const Ryuuji_sikou_recipe100_1 = [
   "ハンバーグ", "ナポリタン", "ポテトサラダ", "煮卵", "炒飯", "唐揚げ", "豚汁", "カレー",
@@ -7,7 +6,8 @@ const Ryuuji_sikou_recipe100_1 = [
   "豚キムチ", "冷しゃぶ","チンジャオロース", "黒酢豚"
 ]
 
-
+// HTMLの要素を生成して追加する
+$("#item_box_field").empty(); // 既存の内容をクリア
 for (let i = 0; i < Ryuuji_sikou_recipe100_1.length; i++) {
     // ここでRyuuji_sikou_recipe100_1の各要素を使ってHTMLを生成
     const title = Ryuuji_sikou_recipe100_1[i];
@@ -28,29 +28,29 @@ for (let i = 0; i < Ryuuji_sikou_recipe100_1.length; i++) {
     $("#item_box_field").append(html);
 }
 
+// 画像クリックイベント
+$(".item_image img").on("click", function() {
+    //ファイル選択ダイアログを開く
+    const fileInput = $('<input type="file" accept="image/*" style="display:none">');
+    $(this).after(fileInput);
+    fileInput.trigger('click');
+    fileInput.on('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                $(this).attr('src', event.target.result);
+                // 必要ならlocalStorageへの保存処理もここに追加
+                localStorage.setItem('customImage', event.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
+        fileInput.remove();
+    });
+});
 
-
-
-// const itemBoxField = document.querySelector('.item_box_field');
-// for (let i = 0; i < Ryuuji_sikou_recipe100_1.length; i++) {
-//     const itemBox = document.createElement('div');
-//     itemBox.className = 'item_box';
-
-//     const itemText = document.createElement('div');
-//     itemText.className = 'item_text';
-//     const p = document.createElement('p');
-//     p.textContent = Ryuuji_sikou_recipe100_1[i];
-//     itemText.appendChild(p);
-
-//     const itemImage = document.createElement('div');
-//     itemImage.className = 'item_image';
-//     const img = document.createElement('img');
-//     img.src = 'img/osara_text.png';
-//     img.alt = '';
-//     itemImage.appendChild(img);
-
-//     itemBox.appendChild(itemText);
-//     itemBox.appendChild(itemImage);
-
-//     itemBoxField.appendChild(itemBox);
-// }
+// 画像の初期表示
+const savedImage = localStorage.getItem('customImage');
+if (savedImage) {
+    $(".item_image img").attr('src', savedImage);
+}
