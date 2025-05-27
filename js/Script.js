@@ -8,10 +8,11 @@ const Ryuuji_sikou_recipe100_1 = [
 
 // HTMLの要素を生成して追加する
 $("#item_box_field").empty(); // 既存の内容をクリア
+
+// ↓ここでRyuuji_sikou_recipe100_1の各要素を使ってHTMLを生成
 for (let i = 0; i < Ryuuji_sikou_recipe100_1.length; i++) {
-    // ここでRyuuji_sikou_recipe100_1の各要素を使ってHTMLを生成
     const title = Ryuuji_sikou_recipe100_1[i];
-    const imageData = 'img/osara_text.png'; // 画像のパスを指定
+    const imageData = 'img/osara_text.png'; // 空のお皿の画像のパスを指定
 
     const html = `
     <div class="item_box">
