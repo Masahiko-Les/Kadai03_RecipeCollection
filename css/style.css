@@ -28,7 +28,7 @@ main{
     background-color:#ffe0b6 ;
     padding: 20px;
     text-align: center;
-    border: #444444 10px solid;
+    border: #555555 10px solid;
     border-radius: 10px;
     margin-bottom: 30px;
 }
@@ -56,17 +56,16 @@ main{
 
 .item_box{
     background-color: #fff;
-    width: 20%;
+    width: 17%;
     margin: 10px;
     text-align: center;
-    border: 1px solid var(--border-color);
     border-radius: 8px;
     box-shadow: 0 1px 4px rgba(0,0,0,0.03);
 }
 
 .item_image{
     background-color: #ddd;
-    width: 200px;
+    width: 100%;
 
     margin: 10px auto;
 }

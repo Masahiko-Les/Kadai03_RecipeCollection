@@ -1,10 +1,29 @@
 //リュウジの至高のレシピ100(1)
 const Ryuuji_sikou_recipe100_1 = [
   "ハンバーグ", "ナポリタン", "ポテトサラダ", "煮卵", "炒飯", "唐揚げ", "豚汁", "カレー",
+
   "チキン南蛮", "生姜焼き", "エビマヨ", "照り焼きチキン", "ブリの照り焼き", "ホイコーロー", "エビチリ", "麻婆豆腐",
   "コロッケ", "肉じゃが", "角煮", "餃子", "ミートボール", "チキントマト煮", "ステーキ", "みそ漬け豚",
-  "豚キムチ", "冷しゃぶ","チンジャオロース", "黒酢豚"
-]
+  "豚キムチ", "冷しゃぶ", "チンジャオロース", "黒酢豚",
+
+  "コールスロー", "マヨネーズ", "ドレッシングサラダ", "スパゲティサラダ", "かぼちゃサラダ", "ナスの焼き浸し",
+  "きんぴら", "だし巻き卵", "なめたけ", "ナムル", "野菜炒め", "ゴーヤーチャンプル", "バンバンジー",
+  "ニラ玉", "しりしり", "青菜炒め", "筑前煮",
+
+  "オムライス", "レタスチャーハン", "ハヤシライス", "キーマカレー", "卵かけごはん", "牛丼", "親子丼", "豚丼",
+  "中華丼", "炊き込みごはん", "とりめし", "ガパオ",
+
+  "ペペロンチーノ", "ボロネーゼ", "カルボナーラ", "ペペたま", "明太子パスタ", "トマトパスタ", "クリームパスタ", "グラタン",
+  "カレーうどん", "肉うどん", "焼きそば", "担々麺", "油そば", "冷やし中華", "ジャージャー麺",
+
+  "ガーリックシュリンプ", "グリルチキン", "とり天", "フライドチキン", "チジミ", "モツ煮", "ジャーマンポテト",
+  "カルパッチョ", "アクアパッツァ", "チャーシュー", "トンテキ", "お茶漬け", "味噌汁",
+
+  "ポトフ", "ビーフシチュー", "クリームシチュー", "ミネストローネ", "クラムチャウダー", "たまごスープ", "スンドゥブ",
+  "かぼちゃのポタージュ", "おでん", "ちゃんこ", "湯豆腐",
+
+  "タマゴサンド", "ハムレタスサンド", "フレンチトースト", "ティラミス"
+];
 
 // HTMLの要素を生成して追加する
 $("#item_box_field").empty(); // 既存の内容をクリア
@@ -42,7 +61,9 @@ $(".item_image img").on("click", function() {
             reader.onload = (event) => {
                 $(this).attr('src', event.target.result);
                 // 必要ならlocalStorageへの保存処理もここに追加
-                localStorage.setItem('customImage', event.target.result);
+                //keyにはpタグの料理名を使う
+                const key = $(this).closest('.item_box').find('.item_text p').text();
+                localStorage.setItem(key, event.target.result);
             };
             reader.readAsDataURL(file);
         }
@@ -50,8 +71,12 @@ $(".item_image img").on("click", function() {
     });
 });
 
-// 画像の初期表示
-const savedImage = localStorage.getItem('customImage');
-if (savedImage) {
-    $(".item_image img").attr('src', savedImage);
-}
+
+// localStorageから画像を読み込む（item_textのpタグの料理名から画像ファイルを取り込む）
+$(".item_box").each(function() {
+    const key = $(this).find('.item_text p').text();
+    const savedImage = localStorage.getItem(key);
+    if (savedImage) {
+        $(this).find('.item_image img').attr('src', savedImage);
+    }
+});

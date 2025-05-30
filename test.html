@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>レシピテスト</title>
+</head>
+<!-- test.html
+・レシピをローカルストレージで保存できるようにする
+
+-->
+
+    <div id="item_box_field">
+        <div class="item_box">
+            <div class="item_text">
+                <p>チャーハン</p>
+            </div>
+            <div class="item_image">
+                <img src="img/osara.png" alt="空のお皿">
+            </div>
+            <!-- <button>ボタン</button> -->
+            <form action="index.html" method="post" enctype="multipart/form-data" >
+            <div>
+                <input type="file" name="dish_image">
+            </div>
+            <div>
+                <input type="submit" id="submit_btn" value="画像を変更する">
+            </div>
+        </form>
+        </div>
+    </div>
+
+
+<script src="js/test.js"></script>
+</body>
+</html>
